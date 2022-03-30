@@ -1,4 +1,4 @@
-function getLocalStorage(a){return JSON.parse(localStorage.getItem(a))}function getCartContents(){let a="";const r=getLocalStorage("so-cart"),c=r.map(t=>renderCartItem(t));document.querySelector(".product-list").innerHTML=c.join("")}function renderCartItem(a){const r=`<li class="cart-card divider">
+function getLocalStorage(a){return JSON.parse(localStorage.getItem(a))}function getCartContents(){let a="";try{const r=JSON.parse(localStorage.getItem("so-cart")),t=r.map(e=>renderCartItem(e));document.querySelector(".product-list").innerHTML=t.join(""),document.querySelector(".product-list").innerHTML=renderCartItem(r)}catch(r){console.log("No Items in Cart")}}function renderCartItem(a){const r=`<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
       src="${a.Image}"

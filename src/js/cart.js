@@ -3,14 +3,22 @@ function getLocalStorage(key) {
 }
 
 function getCartContents() {
-  let markup = "";
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => renderCartItem(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  // document.querySelector(".product-list").innerHTML = renderCartItem(cartItems);
+  let markup = '';
+  try {
+    const cartItems = JSON.parse(localStorage.getItem('so-cart'));
+    // console.log(cartItems);
+    const htmlItems = cartItems.map((item) => renderCartItem(item));
+    document.querySelector('.product-list').innerHTML = htmlItems.join('');
+    document.querySelector('.product-list').innerHTML = renderCartItem(
+      cartItems
+    );
+  } catch (e) {
+    console.log('No Items in Cart');
+  }
 }
 
 function renderCartItem(item) {
+  // console.log(item);
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
