@@ -9,11 +9,13 @@ function getCartContents() {
     // console.log(cartItems);
     const htmlItems = cartItems.map((item) => renderCartItem(item));
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
-    document.querySelector('.product-list').innerHTML = renderCartItem(
-      cartItems
-    );
+    // document.querySelector('.product-list').innerHTML = renderCartItem(
+    //   cartItems
+    // );
   } catch (e) {
-    console.log('No Items in Cart');
+    document.querySelector('.product-list').innerHTML =
+      '<p>No items currently in your cart</p>';
+    // console.log('No Items in Cart'+e);
   }
 }
 
