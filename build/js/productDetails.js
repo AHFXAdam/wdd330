@@ -1,4 +1,4 @@
-var o=(r,a,t)=>new Promise((s,c)=>{var l=d=>{try{i(t.next(d))}catch(e){c(e)}},n=d=>{try{i(t.throw(d))}catch(e){c(e)}},i=d=>d.done?s(d.value):Promise.resolve(d.value).then(l,n);i((t=t.apply(r,a)).next())});import{setLocalStorage as u}from"./utils.js";export default class p{constructor(a,t){this.productId=a,this.product={},this.dataSource=t}init(){return o(this,null,function*(){this.details=yield this.dataSource.findProductById(this.productId),this.renderProductDetails("product-detail"),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(a){return o(this,null,function*(){const t=JSON.parse(localStorage.getItem("so-cart"))||[],s=[...t,this.details];u("so-cart",s),window.location.assign("/cart.html")})}renderProductDetails(a){const t=`
+var r=(o,e,t)=>new Promise((d,c)=>{var l=a=>{try{s(t.next(a))}catch(i){c(i)}},u=a=>{try{s(t.throw(a))}catch(i){c(i)}},s=a=>a.done?d(a.value):Promise.resolve(a.value).then(l,u);s((t=t.apply(o,e)).next())});import{setLocalStorage as n}from"./utils.js";export default class p{constructor(e,t){this.productId=e,this.product={},this.dataSource=t}init(){return r(this,null,function*(){this.details=yield this.dataSource.findProductById(this.productId),this.renderProductDetails("product-detail"),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(e){return r(this,null,function*(){const t=JSON.parse(localStorage.getItem("so-cart"))||[],d=[...t,this.details];n("so-cart",d),document.querySelector(".cart").classList.add("cart-animate"),setTimeout(function(){document.querySelector(".cart").classList.remove("cart-animate")},2e3)})}renderProductDetails(e){console.log(e);const t=`
         <h3>${this.details.Brand.Name}</h3>
         <h2 class="divider">${this.details.NameWithoutBrand}</h2>
         <img
@@ -8,10 +8,11 @@ var o=(r,a,t)=>new Promise((s,c)=>{var l=d=>{try{i(t.next(d))}catch(e){c(e)}},n=
         />
 
         <p class="product-card__price">$${this.details.ListPrice}</p>
+        <p>Regular Price: <del>$${this.details.SuggestedRetailPrice.toFixed(2)}</del></p>
         <p class="product__color">${this.details.Colors[0].ColorName}</p>
         <p class="product__description">
           ${this.details.DescriptionHtmlSimple}
         </p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="${this.details.Id}">Add to Cart</button>
-        </div>`;document.getElementById(a).innerHTML=t}}
+        </div>`;document.getElementById(e).innerHTML=t}}

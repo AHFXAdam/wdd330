@@ -29,6 +29,10 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 3;
 }
 .logo {
   line-height: 60px;
@@ -101,7 +105,9 @@ button {
   position: relative;
   text-align: center;
 }
-
+.cart-animate {
+  animation: bag-rotate ease-in 1 both 1s;
+}
 .cart svg {
   width: 25px;
 }
@@ -112,7 +118,9 @@ button {
   font-size: var(--small-font);
   color: red;
 }
-
+del {
+  color: red;
+}
 a.remove:link,
 a.remove:visited,
 a.remove:hover,
@@ -213,7 +221,26 @@ a.remove:focus {
   grid-row: 2;
   grid-column: 3;
 }
-
+@keyframes bag-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(0);
+  }
+  80% {
+    transform: rotate(0);
+  }
+  90% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
