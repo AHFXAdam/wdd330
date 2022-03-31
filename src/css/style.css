@@ -108,7 +108,20 @@ button {
 .cart:hover svg {
   fill: gray;
 }
+.remove {
+  font-size: var(--small-font);
+  color: red;
+}
 
+a.remove:link,
+a.remove:visited,
+a.remove:hover,
+a.remove:active,
+a.remove:focus {
+  color: red;
+  text-decoration: none;
+  margin-top: 15px;
+}
 /* End cart icon styles */
 
 .mission {

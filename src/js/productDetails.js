@@ -26,6 +26,7 @@ export default class productDetails {
     const current_prod = JSON.parse(localStorage.getItem('so-cart')) || [];
     const output = [...current_prod, this.details];
     setLocalStorage('so-cart', output);
+    window.location.assign('/cart.html');
   }
 
   renderProductDetails(id) {
