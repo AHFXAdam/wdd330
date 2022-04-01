@@ -1,4 +1,4 @@
-// import { setClick } from "./utils";
+import { updateCartNumber } from './header.js';
 
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
@@ -16,7 +16,9 @@ function removeFromCart(e) {
     }
   }
   localStorage.setItem('so-cart', JSON.stringify(out));
+
   getCartContents();
+  updateCartNumber();
 }
 
 function getCartContents() {

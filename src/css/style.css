@@ -169,6 +169,17 @@ a.remove:focus {
 .hide {
   display: none;
 }
+.num-items-in-cart {
+  position: absolute;
+  top: 9px;
+  background-color: #e5aa72;
+  color: black;
+  border-radius: 100%;
+  width: 17px;
+  height: 17px;
+  right: -5px;
+  font-size: 0.8em;
+}
 .card__brand {
   font-size: var(--small-font);
 }
