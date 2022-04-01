@@ -27,3 +27,12 @@ export function getParams(param) {
   const product = urlParams.get(param);
   return product;
 }
+
+export function renderList(template, parentElement, list, callback) {
+  list.forEach((product) => {
+    let clone = template.content.cloneNode(true);
+    //
+    clone = callback(clone, product);
+    parentElement.appendChild(clone);
+  });
+}

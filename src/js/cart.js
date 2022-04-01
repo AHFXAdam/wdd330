@@ -54,9 +54,11 @@ function getCartContents() {
 function renderCartItem(item) {
   // console.log(item);
   const newItem = `<li class="cart-card divider">
-  <a href="product_pages/product-details.html?product=${item.Id}" class="cart-card__image">
+  <a href="product_pages/product-details.html?product=${
+    item.Id
+  }" class="cart-card__image">
     <img
-      src="${item.Image.replace("../","")}"
+      src="${item.Image.replace('../', '')}"
       alt="${item.Name}"
     />
   </a>

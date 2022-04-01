@@ -1,7 +1,7 @@
 function getLocalStorage(t){return JSON.parse(localStorage.getItem(t))}function removeFromCart(t){const r=t.target.dataset.id,o=getLocalStorage("so-cart"),e=[];for(const c of o)c.Id!=r&&e.push(c);localStorage.setItem("so-cart",JSON.stringify(e)),getCartContents()}function getCartContents(){let t="";try{const r=getLocalStorage("so-cart");if(r.length==0)document.querySelector(".product-list").innerHTML="<p>No items currently in your cart</p>";else{const o=r.map(e=>renderCartItem(e));document.querySelector(".product-list").innerHTML=o.join(""),document.querySelectorAll(".remove").forEach(e=>e.addEventListener("click",c=>removeFromCart(c)))}}catch(r){document.querySelector(".product-list").innerHTML="<p>No items currently in your cart</p>",console.log("No Items in Cart"+r)}}function renderCartItem(t){const r=`<li class="cart-card divider">
   <a href="product_pages/product-details.html?product=${t.Id}" class="cart-card__image">
     <img
-      src="${t.Image}"
+      src="${t.Image.replace("../","")}"
       alt="${t.Name}"
     />
   </a>
