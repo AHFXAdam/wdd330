@@ -28,6 +28,10 @@ function getCartContents() {
       document.querySelector('.product-list').innerHTML =
         '<p>No items currently in your cart</p>';
     } else {
+      const total = calcTotal(cartItems);
+      console.log(total);
+      document.querySelector('.cart-total').innerHTML += total.toFixed(2);
+      document.querySelector('.cart-footer').classList.remove('hide');
       const htmlItems = cartItems.map((item) => renderCartItem(item));
       document.querySelector('.product-list').innerHTML = htmlItems.join('');
       // setClick(".remove",removeFromCart.bind(this))
@@ -49,6 +53,14 @@ function getCartContents() {
       '<p>No items currently in your cart</p>';
     console.log('No Items in Cart' + e);
   }
+}
+
+function calcTotal(items) {
+  let total = 0;
+  for (let item of items) {
+    total += item.ListPrice;
+  }
+  return total;
 }
 
 function renderCartItem(item) {

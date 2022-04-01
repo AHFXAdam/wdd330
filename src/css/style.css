@@ -166,7 +166,9 @@ a.remove:focus {
 .product-card p {
   margin: 0.5em 0;
 }
-
+.hide {
+  display: none;
+}
 .card__brand {
   font-size: var(--small-font);
 }
