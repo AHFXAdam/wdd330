@@ -6,8 +6,8 @@ const dataSource = new ProductData('tents');
 const productId = getParams('product');
 const product = new productDetails(productId, dataSource);
 product.init();
-console.log(dataSource.getData());
-console.log(dataSource.findProductById(productId));
+// console.log(dataSource.getData());
+// console.log(dataSource.findProductById(productId));
 
 // console.log(dataSource.getData());
 

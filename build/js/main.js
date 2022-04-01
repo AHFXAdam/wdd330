@@ -1,1 +1,1 @@
-import t from"./productData.js";import o from"./productList.js";const r=new t("tents",""),c=new o(r,document.querySelector(".product-list"),"tents");c.init();
+import t from"./productData.js";import r from"./productList.js";import e from"./alert.js";const o=new t("tents",""),c=new e;c.renderAlerts(document.querySelector("main"));const s=new r(o,document.querySelector(".product-list"),"tents");s.init();

@@ -36,7 +36,7 @@ export default class productDetails {
   }
 
   renderProductDetails(id) {
-    console.log(id);
+    // console.log(id);
     const output = `
         <h3>${this.details.Brand.Name}</h3>
         <h2 class="divider">${this.details.NameWithoutBrand}</h2>

@@ -1,1 +1,1 @@
-import r from"./productData.js";import a from"./productDetails.js";import{getParams as c}from"./utils.js";const t=new r("tents"),o=c("product"),e=new a(o,t);e.init(),console.log(t.getData()),console.log(t.findProductById(o));
+import t from"./productData.js";import o from"./productDetails.js";import{getParams as r}from"./utils.js";const a=new t("tents"),c=r("product"),s=new o(c,a);s.init();

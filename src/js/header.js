@@ -2,7 +2,7 @@ import { getNumberItemsInCart } from './utils';
 
 export function updateCartNumber() {
   const numItems = getNumberItemsInCart();
-  console.log(numItems);
+  // console.log(numItems);
   if (numItems > 0) {
     document.querySelector('.num-items-in-cart').innerHTML = numItems;
     document.querySelector('.num-items-in-cart').classList.remove('hide');

@@ -31,7 +31,7 @@ function getCartContents() {
         '<p>No items currently in your cart</p>';
     } else {
       const total = calcTotal(cartItems);
-      console.log(total);
+      // console.log(total);
       document.querySelector('.cart-total').innerHTML += total.toFixed(2);
       document.querySelector('.cart-footer').classList.remove('hide');
       const htmlItems = cartItems.map((item) => renderCartItem(item));
@@ -53,7 +53,7 @@ function getCartContents() {
   } catch (e) {
     document.querySelector('.product-list').innerHTML =
       '<p>No items currently in your cart</p>';
-    console.log('No Items in Cart' + e);
+    // console.log('No Items in Cart' + e);
   }
 }
 
@@ -86,7 +86,7 @@ function renderCartItem(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
-  console.log(newItem);
+  // console.log(newItem);
   return newItem;
 }
 
