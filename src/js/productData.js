@@ -9,8 +9,7 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this._category = category;
-    // console.log(window.location.origin);
-    this._path = `${window.location.origin}/json/${this._category}.json`;
+    this._path = `../json/${this._category}.json`;
   }
 
   getData() {

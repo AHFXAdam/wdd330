@@ -1,5 +1,5 @@
 import { getParams, setLocalStorage, getLocalStorage } from './utils.js';
-
+import { updateCartNumber } from './header.js';
 export default class productDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -27,7 +27,7 @@ export default class productDetails {
     const current_prod = JSON.parse(localStorage.getItem('so-cart')) || [];
     const output = [...current_prod, this.details];
     setLocalStorage('so-cart', output);
-
+    updateCartNumber();
     document.querySelector('.cart').classList.add('cart-animate');
     setTimeout(function () {
       document.querySelector('.cart').classList.remove('cart-animate');
