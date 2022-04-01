@@ -10,7 +10,9 @@ export function updateCartNumber() {
     document.querySelector('.num-items-in-cart').classList.add('hide');
     try {
       document.querySelector('.cart-total').classList.add('hide');
-    } catch (e) {return}
+    } catch (e) {
+      return;
+    }
   }
 }
 updateCartNumber();

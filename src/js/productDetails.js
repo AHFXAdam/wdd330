@@ -50,6 +50,9 @@ export default class productDetails {
         <p>Regular Price: <del>$${this.details.SuggestedRetailPrice.toFixed(
           2
         )}</del></p>
+        <p>Discount: <b>$${(
+          this.details.SuggestedRetailPrice - this.details.ListPrice
+        ).toFixed(2)}</b></p>
         <p class="product__color">${this.details.Colors[0].ColorName}</p>
         <p class="product__description">
           ${this.details.DescriptionHtmlSimple}
