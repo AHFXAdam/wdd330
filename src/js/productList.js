@@ -24,7 +24,7 @@ export default class ProductList {
   prepareTemplate(clone, product) {
     clone.querySelector('a').href += product.Id;
     clone.querySelector('img').src = product.Image;
-    clone.querySelector('img').alt += product.Name;
+    clone.querySelector('img').alt += item.Image.replace('../', '');
     clone.querySelector('.card__brand').innerHTML = product.Brand.Name;
     clone.querySelector('.card__name').innerHTML = product.NameWithoutBrand;
     clone.querySelector('.product-card__price').innerHTML += product.ListPrice;
