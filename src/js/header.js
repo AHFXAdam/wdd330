@@ -1,6 +1,6 @@
 import { getNumberItemsInCart, loadHeaderFooter } from './utils';
 
-export function updateCartNumber() {
+export async function updateCartNumber() {
   const numItems = getNumberItemsInCart();
   // console.log(numItems);
   if (numItems > 0) {
@@ -15,5 +15,8 @@ export function updateCartNumber() {
     }
   }
 }
-loadHeaderFooter();
-updateCartNumber();
+export async function runAll() {
+  await loadHeaderFooter();
+  updateCartNumber();
+}
+runAll();
