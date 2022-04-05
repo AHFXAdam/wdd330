@@ -1,6 +1,6 @@
-import ProductData from './productData.js';
-import ProductList from './productList.js';
-import Alert from './alert.js';
+import ProductData from '/js/productData.js';
+import ProductList from '/js/productList.js';
+import Alert from '/js/alert.js';
 
 const dataSource = new ProductData('tents', '');
 const alerts = new Alert();
