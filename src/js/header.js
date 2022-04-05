@@ -1,4 +1,4 @@
-import { getNumberItemsInCart } from './utils';
+import { getNumberItemsInCart, loadHeaderFooter } from './utils';
 
 export function updateCartNumber() {
   const numItems = getNumberItemsInCart();
@@ -15,4 +15,5 @@ export function updateCartNumber() {
     }
   }
 }
+loadHeaderFooter();
 updateCartNumber();
