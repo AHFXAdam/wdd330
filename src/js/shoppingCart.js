@@ -23,7 +23,7 @@ export default class shoppingCart {
   }
 
   getCartContents() {
-    let markup = '';
+    // let markup = '';
     try {
       const cartItems = this.getLocalStorage('so-cart');
       // console.log(cartItems);

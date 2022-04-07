@@ -1,4 +1,3 @@
-import { doc } from 'prettier';
 import { renderList, getLocalStorage, setLocalStorage } from './utils';
 
 export default class ProductList {
@@ -25,7 +24,7 @@ export default class ProductList {
       const sorting = getLocalStorage('sorting');
       document.querySelector('#sorting').value = sorting;
     } catch (error) {
-      console.log('Couldn\'t find sorting');
+      // console.log('Couldn\'t find sorting');
     }
   }
 
@@ -43,27 +42,27 @@ export default class ProductList {
   }
 
   sortList(list) {
-    console.log(list);
+    // console.log(list);
     const sorting = getLocalStorage('sorting');
     switch (sorting) {
       case 'price':
-        console.log('Sort by Price');
+        // console.log('Sort by Price');
         list.sort((a, b) => (a.FinalPrice > b.FinalPrice ? 1 : -1));
         break;
       case 'alpha':
-        console.log('Sort by Alpha');
+        // console.log('Sort by Alpha');
         list.sort((a, b) => (a.NameWithoutBrand > b.NameWithoutBrand ? 1 : -1));
         break;
       case 'pricedesc':
-        console.log('Sort by Price');
+        // console.log('Sort by Price');
         list.sort((a, b) => (a.FinalPrice < b.FinalPrice ? 1 : -1));
         break;
       case 'alphadesc':
-        console.log('Sort by Alpha');
+        // console.log('Sort by Alpha');
         list.sort((a, b) => (a.NameWithoutBrand < b.NameWithoutBrand ? 1 : -1));
         break;
       default:
-        console.log('Sort by Default');
+        // console.log('Sort by Default');
         break;
     }
     return list;
@@ -71,7 +70,7 @@ export default class ProductList {
 
   setSorting(value) {
     setLocalStorage('sorting', value);
-    console.log(value);
+    // console.log(value);
   }
 
   updateHeading(text) {
