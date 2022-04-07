@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="module" src="js/main.js" defer></script>
-    <script defer type="module" src="js/header.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/product-listing.js" defer></script>
+    <script defer type="module" src="../js/header.js"></script>
 
     <!-- HTML template to build a product card2 -->
     <template id="product-card-template">
       <li class="product-card">
-        <a href="product_pages/product-details.html?product=">
+        <a href="../product_pages/product-details.html?product=">
           <img src="" alt="Image of " />
           <h3 class="card__brand"></h3>
           <h2 class="card__name"></h2>
@@ -23,7 +23,7 @@
   <body>
     <header class="divider" id="main-header"></header>
     <main class="divider">
-      <div class="hero">
+      <!-- <div class="hero">
         <img
           src="images/banner-sm.jpg"
           srcset="images/banner-sm.jpg 500w, images/banner.jpg"
@@ -42,37 +42,10 @@
           mission is to provide you with everything you need to do this
           comfortably at an affordable price.
         </p>
-      </section>
-      <section class="categories">
-        <div>
-          <a href="product-listing/?category=tents"
-            ><img src="images/noun_Tent_3544767.svg" alt="Tents" />Tents</a
-          >
-        </div>
-        <div>
-          <a href="product-listing/?category=backpacks"
-            ><img
-              src="images/noun_carrier bag_3544771.svg"
-              alt="Backpacks"
-            />Backpacks</a
-          >
-        </div>
-        <div>
-          <a href="product-listing/?category=sleeping-bags"
-            ><img
-              src="images/noun_Sleeping Bag_3544775.svg"
-              alt="Sleeping Bags"
-            />Sleeping Bags</a
-          >
-        </div>
-        <div>
-          <a href="product-listing/?category=hammocks"
-            ><img
-              src="images/noun_Hammock_791143.svg"
-              alt="Hammocks"
-            />Hammocks</a
-          >
-        </div>
+      </section>-->
+      <section class="products">
+        <h2>Top Products</h2>
+        <ul class="product-list"></ul>
       </section>
     </main>
     <footer></footer>

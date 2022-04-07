@@ -69,14 +69,14 @@ export default class shoppingCart {
   renderCartItem(item) {
     // console.log(item);
     const newItem = `<li class="cart-card divider">
-        <a href="product_pages/product-details.html?product=${item.Id}" class="cart-card__image">
+        <a href="/product_pages/product-details.html?product=${item.Id}" class="cart-card__image">
           <img
-            src="${item.Image}"
+            src="${item.Images.PrimaryMedium}"
             alt="${item.Name}"
           />
         </a>
         <div>
-        <a href="product_pages/product-details.html?product=${item.Id}">
+        <a href="/product_pages/product-details.html?product=${item.Id}">
           <h2 class="card__name">${item.Name}</h2>
         </a>
         <span class='remove' data-id="${item.Id}">REMOVE</span>

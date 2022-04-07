@@ -41,14 +41,13 @@ export default class productDetails {
         <h3>${this.details.Brand.Name}</h3>
         <h2 class="divider">${this.details.NameWithoutBrand}</h2>
         <picture>
-        <source media="(min-width:500px)" srcset="${this.details.Image.replace(
-          '320',
-          '850'
-        )}">
+        <source media="(min-width:500px)" srcset="${
+          this.details.Images.PrimaryExtraLarge
+        }">
         <img
           class="divider"
           alt="${this.details.Name}"
-          src="${this.details.Image}"
+          src="${this.details.Images.PrimaryLarge}"
         />
       </picture>         
 
