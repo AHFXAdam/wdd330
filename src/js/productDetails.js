@@ -40,11 +40,18 @@ export default class productDetails {
     const output = `
         <h3>${this.details.Brand.Name}</h3>
         <h2 class="divider">${this.details.NameWithoutBrand}</h2>
+        <picture>
+        <source media="(min-width:500px)" srcset="${this.details.Image.replace(
+          '320',
+          '850'
+        )}">
         <img
           class="divider"
-          src="${this.details.Image}"
           alt="${this.details.Name}"
+          src="${this.details.Image}"
         />
+      </picture>         
+
 
         <p class="product-card__price">$${this.details.ListPrice}</p>
         <p>Regular Price: <del>$${this.details.SuggestedRetailPrice.toFixed(
