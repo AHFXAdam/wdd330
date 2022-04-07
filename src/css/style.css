@@ -4,6 +4,7 @@
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
+  --secondary-color-hover: #47500a;
   --tertiary-color: #a4b8c4;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
@@ -93,6 +94,10 @@ button {
   display: block;
   border: 0;
   font-size: var(--large-font);
+}
+button:hover {
+  background-color: var(--secondary-color-hover);
+  cursor: pointer;
 }
 .divider {
   border-bottom: 2px solid var(--primary-color);
@@ -293,6 +298,18 @@ a.remove:focus {
 }
 .bold {
   font-weight: bold;
+}
+.sort-bar {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.sort-bar div {
+  margin-top: 20px;
+}
+.sort-bar button {
+  font-size: var(--small-font);
+  display: inline-block;
+  margin-left: 15px;
 }
 footer {
   font-size: var(--small-font);

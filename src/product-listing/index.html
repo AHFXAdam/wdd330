@@ -47,7 +47,18 @@
         </p>
       </section>-->
       <section class="products">
-        <h2>Top Products</h2>
+        <div class="sort-bar">
+          <h2>Top Products</h2>
+          <div>
+            <label for="sorting">Sort: </label
+            ><select name="sorting" id="sorting">
+              <option value="alpha">Alphabetical A-Z</option>
+              <option value="alphadesc">Alphabetical Z-A</option>
+              <option value="price">Price Low to High</option>
+              <option value="pricedesc">Price High to Low</option></select
+            ><button id="sort">Sort</button>
+          </div>
+        </div>
         <ul class="product-list"></ul>
       </section>
     </main>
