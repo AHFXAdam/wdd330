@@ -15,7 +15,7 @@ export default class ProductList {
     this.updateHeading(this.category);
     document
       .querySelector('#sort')
-      .addEventListener('click', (e) => this.sortAndShow());
+      .addEventListener('click', (err) => this.sortAndShow());
     this.updateSortDropdown();
   }
 
