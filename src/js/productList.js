@@ -36,7 +36,12 @@ export default class ProductList {
     clone.querySelector('img').alt += product.Name;
     clone.querySelector('.card__brand').innerHTML = product.Brand.Name;
     clone.querySelector('.card__name').innerHTML = product.NameWithoutBrand;
-    clone.querySelector('.product-card__price').innerHTML += product.ListPrice;
+    clone.querySelector(
+      '.product-card__price'
+    ).innerHTML += product.ListPrice.toFixed(2);
+    clone.querySelector('.product-card__discount_price').innerHTML += (
+      product.SuggestedRetailPrice - product.ListPrice
+    ).toFixed(2);
     return clone;
   }
 }

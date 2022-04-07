@@ -288,7 +288,12 @@ a.remove:focus {
 .categories a:hover {
   color: red;
 }
-
+.smaller {
+  font-size: var(--small-font);
+}
+.bold {
+  font-weight: bold;
+}
 footer {
   font-size: var(--small-font);
   padding: 1em;
