@@ -268,6 +268,27 @@ a.remove:focus {
   }
 }
 
+.categories {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.categories a:link,
+.categories a:visited,
+.categories a:hover,
+.categories a:active {
+  display: block;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}
+
+.categories a:hover {
+  color: red;
+}
+
 footer {
   font-size: var(--small-font);
   padding: 1em;

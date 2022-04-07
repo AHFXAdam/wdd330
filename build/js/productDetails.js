@@ -1,12 +1,12 @@
-var r=(c,i,t)=>new Promise((a,o)=>{var l=e=>{try{s(t.next(e))}catch(d){o(d)}},u=e=>{try{s(t.throw(e))}catch(d){o(d)}},s=e=>e.done?a(e.value):Promise.resolve(e.value).then(l,u);s((t=t.apply(c,i)).next())});import{setLocalStorage as p}from"./utils.js";import{updateCartNumber as n}from"./header.js";export default class h{constructor(i,t){this.productId=i,this.product={},this.dataSource=t}init(){return r(this,null,function*(){this.details=yield this.dataSource.findProductById(this.productId),this.renderProductDetails("product-detail"),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(i){return r(this,null,function*(){const t=JSON.parse(localStorage.getItem("so-cart"))||[],a=[...t,this.details];p("so-cart",a),n(),document.querySelector(".cart").classList.add("cart-animate"),setTimeout(function(){document.querySelector(".cart").classList.remove("cart-animate")},2e3)})}renderProductDetails(i){const t=`
+var r=(c,i,t)=>new Promise((a,o)=>{var l=e=>{try{s(t.next(e))}catch(d){o(d)}},u=e=>{try{s(t.throw(e))}catch(d){o(d)}},s=e=>e.done?a(e.value):Promise.resolve(e.value).then(l,u);s((t=t.apply(c,i)).next())});import{setLocalStorage as n}from"./utils.js";import{updateCartNumber as p}from"./header.js";export default class m{constructor(i,t){this.productId=i,this.product={},this.dataSource=t}init(){return r(this,null,function*(){this.details=yield this.dataSource.findProductById(this.productId),this.renderProductDetails("product-detail"),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(i){return r(this,null,function*(){const t=JSON.parse(localStorage.getItem("so-cart"))||[],a=[...t,this.details];n("so-cart",a),p(),document.querySelector(".cart").classList.add("cart-animate"),setTimeout(function(){document.querySelector(".cart").classList.remove("cart-animate")},2e3)})}renderProductDetails(i){const t=`
         <h3>${this.details.Brand.Name}</h3>
         <h2 class="divider">${this.details.NameWithoutBrand}</h2>
         <picture>
-        <source media="(min-width:500px)" srcset="${this.details.Image.replace("320","850")}">
+        <source media="(min-width:500px)" srcset="${this.details.Images.PrimaryExtraLarge}">
         <img
           class="divider"
           alt="${this.details.Name}"
-          src="${this.details.Image}"
+          src="${this.details.Images.PrimaryLarge}"
         />
       </picture>         
 
