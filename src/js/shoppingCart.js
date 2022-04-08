@@ -93,4 +93,24 @@ export default class shoppingCart {
     // console.log(newItem);
     return newItem;
   }
+
+  // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+  packageItems() {
+    const items = this.getLocalStorage('so-cart');
+    const outItems = items.map((item) => this.smallItem(item));
+    return outItems;
+    // console.log(outItems);
+
+    // convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
+  }
+
+  smallItem(item) {
+    // console.log(item);
+    return {
+      id: item.Id,
+      name: item.Name,
+      price: item.FinalPrice,
+      quantity: 1,
+    };
+  }
 }
