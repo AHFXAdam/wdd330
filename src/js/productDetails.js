@@ -1,4 +1,4 @@
-import { setLocalStorage} from './utils.js';
+import { setLocalStorage } from './utils.js';
 import { updateCartNumber } from './header.js';
 export default class productDetails {
   constructor(productId, dataSource) {
