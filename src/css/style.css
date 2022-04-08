@@ -136,7 +136,24 @@ a.remove:focus {
   margin-top: 15px;
 }
 /* End cart icon styles */
-
+.checkout {
+  max-width: 300px;
+  margin: 0 auto;
+}
+.checkout fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.checkout label {
+  margin-top: 15px;
+}
+.cart_info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cart_info div:nth-of-type(even) {
+  text-align: right;
+}
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */

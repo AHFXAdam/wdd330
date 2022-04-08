@@ -31,7 +31,7 @@ export default class shoppingCart {
         document.querySelector('.product-list').innerHTML =
           '<p>No items currently in your cart</p>';
       } else {
-        const total = this.calcTotal(cartItems);
+        const total = this.calcTotal();
         // console.log(total);
         document.querySelector('.cart-total').innerHTML += total.toFixed(2);
         document.querySelector('.cart-footer').classList.remove('hide');
@@ -58,12 +58,17 @@ export default class shoppingCart {
     }
   }
 
-  calcTotal(items) {
+  calcTotal() {
+    const items = this.getLocalStorage('so-cart');
     let total = 0;
     for (let item of items) {
       total += item.ListPrice;
     }
     return total;
+  }
+
+  getTotalCartItems() {
+    return this.getLocalStorage('so-cart').length;
   }
 
   renderCartItem(item) {
