@@ -12,11 +12,10 @@ export default class shoppingCart {
     // const product = products.find((item) => item.Id === e.target.dataset.id);
     const itemToAdd = e.details;
     let items = (await JSON.parse(localStorage.getItem('so-cart'))) || [];
-    let itemIsInCart = this.itemInCart(itemToAdd, items);
+    let itemIsInCart = this.incrementQuantity(itemToAdd, items);
     var output;
     if (itemIsInCart != -1) {
       output = itemIsInCart;
-      //current_prod[this.itemInCart(e.details)]
     } else {
       e.details.quantity = 1;
       output = [...items, e.details];
@@ -48,7 +47,7 @@ export default class shoppingCart {
     updateCartNumber();
   }
 
-  itemInCart(item, items) {
+  incrementQuantity(item, items) {
     for (let i of items) {
       if (item.Id == i.Id) {
         i.quantity += 1;
@@ -56,6 +55,39 @@ export default class shoppingCart {
       }
     }
     return -1;
+  }
+  async updateQuantity(e) {
+    // console.log(e.target.value);
+    const quantity = parseInt(e.target.value);
+    const idToAdd = e.target.dataset.id;
+    if (
+      quantity <= 0 ||
+      quantity == null ||
+      quantity == undefined ||
+      isNaN(quantity)
+    ) {
+      this.removeFromCart(e);
+    }
+
+    let items = (await JSON.parse(localStorage.getItem('so-cart'))) || [];
+    let itemIsInCart = this.setQuantity(idToAdd, items, quantity);
+    setLocalStorage('so-cart', itemIsInCart);
+    this.getCartContents();
+    updateCartNumber();
+    document.querySelector('.cart').classList.add('cart-animate');
+    setTimeout(function () {
+      document.querySelector('.cart').classList.remove('cart-animate');
+    }, 2000);
+  }
+
+  setQuantity(id, items, quantity) {
+    for (let i of items) {
+      if (id == i.Id) {
+        i.quantity = quantity;
+        return items;
+      }
+    }
+    return items;
   }
 
   getCartContents() {
@@ -83,6 +115,11 @@ export default class shoppingCart {
           .forEach((button) =>
             button.addEventListener('click', (e) => this.removeFromCart(e))
           );
+        document
+          .querySelectorAll('.cart-quantity')
+          .forEach((button) =>
+            button.addEventListener('change', (e) => this.updateQuantity(e))
+          );
         // .addEventListener('click', this.addToCart.bind(this));
         // document.querySelector('.product-list').innerHTML = renderCartItem(
         //   cartItems
@@ -105,7 +142,12 @@ export default class shoppingCart {
   }
 
   getTotalCartItems() {
-    return this.getLocalStorage('so-cart').length;
+    let total = 0;
+    const items = this.getLocalStorage('so-cart');
+    for (let item of items) {
+      total += item.quantity;
+    }
+    return total;
   }
 
   renderCartItem(item) {
@@ -124,7 +166,7 @@ export default class shoppingCart {
         <span class='remove' data-id="${item.Id}">REMOVE</span>
         </div>
         <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-        <p class="cart-card__quantity">qty: ${item.quantity}</p>
+        <p class="cart-card__quantity">qty: <input class="cart-quantity" data-id="${item.Id}" type="text" value="${item.quantity}"></p>
         <p class="cart-card__price">$${item.FinalPrice}</p>
       </li>`;
     // console.log(newItem);

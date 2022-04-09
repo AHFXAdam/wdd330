@@ -11,7 +11,12 @@ export function getLocalStorage(key) {
 }
 
 export function getNumberItemsInCart() {
-  return getLocalStorage('so-cart').length;
+  let total = 0;
+  const items = getLocalStorage('so-cart');
+  for (let item of items) {
+    total += item.quantity;
+  }
+  return total;
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
