@@ -1,8 +1,34 @@
 import { updateCartNumber } from './header.js';
+import { setLocalStorage } from './utils.js';
 
 export default class shoppingCart {
   getLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key));
+  }
+
+  async addToCart(e) {
+    // const products = await this.dataSource.getData();
+    // console.log(products);
+    // const product = products.find((item) => item.Id === e.target.dataset.id);
+    const itemToAdd = e.details;
+    let items = (await JSON.parse(localStorage.getItem('so-cart'))) || [];
+    let itemIsInCart = this.itemInCart(itemToAdd, items);
+    var output;
+    if (itemIsInCart != -1) {
+      output = itemIsInCart;
+      //current_prod[this.itemInCart(e.details)]
+    } else {
+      e.details.quantity = 1;
+      output = [...items, e.details];
+    }
+
+    setLocalStorage('so-cart', output);
+    updateCartNumber();
+    document.querySelector('.cart').classList.add('cart-animate');
+    setTimeout(function () {
+      document.querySelector('.cart').classList.remove('cart-animate');
+    }, 2000);
+    // window.location.assign('/cart.html');
   }
 
   removeFromCart(e) {
@@ -22,6 +48,16 @@ export default class shoppingCart {
     updateCartNumber();
   }
 
+  itemInCart(item, items) {
+    for (let i of items) {
+      if (item.Id == i.Id) {
+        i.quantity += 1;
+        return items;
+      }
+    }
+    return -1;
+  }
+
   getCartContents() {
     // let markup = '';
     try {
@@ -33,7 +69,8 @@ export default class shoppingCart {
       } else {
         const total = this.calcTotal();
         // console.log(total);
-        document.querySelector('.cart-total').innerHTML += total.toFixed(2);
+        document.querySelector('.cart-total').innerHTML =
+          '$' + total.toFixed(2);
         document.querySelector('.cart-footer').classList.remove('hide');
         const htmlItems = cartItems.map((item) => this.renderCartItem(item));
         document.querySelector('.product-list').innerHTML = htmlItems.join('');
@@ -62,7 +99,7 @@ export default class shoppingCart {
     const items = this.getLocalStorage('so-cart');
     let total = 0;
     for (let item of items) {
-      total += item.ListPrice;
+      total += item.ListPrice * item.quantity;
     }
     return total;
   }
@@ -87,7 +124,7 @@ export default class shoppingCart {
         <span class='remove' data-id="${item.Id}">REMOVE</span>
         </div>
         <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-        <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__quantity">qty: ${item.quantity}</p>
         <p class="cart-card__price">$${item.FinalPrice}</p>
       </li>`;
     // console.log(newItem);
@@ -110,7 +147,7 @@ export default class shoppingCart {
       id: item.Id,
       name: item.Name,
       price: item.FinalPrice,
-      quantity: 1,
+      quantity: item.quantity,
     };
   }
 }

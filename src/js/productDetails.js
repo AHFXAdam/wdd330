@@ -1,10 +1,11 @@
 import { setLocalStorage } from './utils.js';
-import { updateCartNumber } from './header.js';
+// import { updateCartNumber } from './header.js';
 export default class productDetails {
-  constructor(productId, dataSource) {
+  constructor(productId, dataSource, sc) {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+    this.sc = sc;
   }
 
   async init() {
@@ -16,24 +17,25 @@ export default class productDetails {
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
     document
       .getElementById('addToCart')
-      .addEventListener('click', this.addToCart.bind(this));
+      .addEventListener('click', () => this.sc.addToCart(this));
+    // .addEventListener('click', this.sc.addToCart.bind(this));
   }
 
-  async addToCart(e) {
-    // const products = await this.dataSource.getData();
-    // console.log(products);
-    // const product = products.find((item) => item.Id === e.target.dataset.id);
+  // async addToCart(e) {
+  //   // const products = await this.dataSource.getData();
+  //   // console.log(products);
+  //   // const product = products.find((item) => item.Id === e.target.dataset.id);
 
-    const current_prod = JSON.parse(localStorage.getItem('so-cart')) || [];
-    const output = [...current_prod, this.details];
-    setLocalStorage('so-cart', output);
-    updateCartNumber();
-    document.querySelector('.cart').classList.add('cart-animate');
-    setTimeout(function () {
-      document.querySelector('.cart').classList.remove('cart-animate');
-    }, 2000);
-    // window.location.assign('/cart.html');
-  }
+  //   const current_prod = JSON.parse(localStorage.getItem('so-cart')) || [];
+  //   const output = [...current_prod, this.details];
+  //   setLocalStorage('so-cart', output);
+  //   updateCartNumber();
+  //   document.querySelector('.cart').classList.add('cart-animate');
+  //   setTimeout(function () {
+  //     document.querySelector('.cart').classList.remove('cart-animate');
+  //   }, 2000);
+  //   // window.location.assign('/cart.html');
+  // }
 
   renderProductDetails(id) {
     // console.log(id);

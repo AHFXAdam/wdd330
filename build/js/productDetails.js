@@ -1,4 +1,4 @@
-var r=(c,i,t)=>new Promise((a,o)=>{var l=e=>{try{s(t.next(e))}catch(d){o(d)}},u=e=>{try{s(t.throw(e))}catch(d){o(d)}},s=e=>e.done?a(e.value):Promise.resolve(e.value).then(l,u);s((t=t.apply(c,i)).next())});import{setLocalStorage as n}from"./utils.js";import{updateCartNumber as p}from"./header.js";export default class h{constructor(i,t){this.productId=i,this.product={},this.dataSource=t}init(){return r(this,null,function*(){this.details=yield this.dataSource.findProductById(this.productId),this.renderProductDetails("product-detail"),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(i){return r(this,null,function*(){const t=JSON.parse(localStorage.getItem("so-cart"))||[],a=[...t,this.details];n("so-cart",a),p(),document.querySelector(".cart").classList.add("cart-animate"),setTimeout(function(){document.querySelector(".cart").classList.remove("cart-animate")},2e3)})}renderProductDetails(i){const t=`
+var o=(r,e,t)=>new Promise((s,c)=>{var l=i=>{try{d(t.next(i))}catch(a){c(a)}},u=i=>{try{d(t.throw(i))}catch(a){c(a)}},d=i=>i.done?s(i.value):Promise.resolve(i.value).then(l,u);d((t=t.apply(r,e)).next())});import"./utils.js";export default class p{constructor(e,t,s){this.productId=e,this.product={},this.dataSource=t,this.sc=s}init(){return o(this,null,function*(){this.details=yield this.dataSource.findProductById(this.productId),this.renderProductDetails("product-detail"),document.getElementById("addToCart").addEventListener("click",()=>this.sc.addToCart(this))})}renderProductDetails(e){const t=`
         <h3>${this.details.Brand.Name}</h3>
         <h2 class="divider">${this.details.NameWithoutBrand}</h2>
         <picture>
@@ -20,4 +20,4 @@ var r=(c,i,t)=>new Promise((a,o)=>{var l=e=>{try{s(t.next(e))}catch(d){o(d)}},u=
         </p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="${this.details.Id}">Add to Cart</button>
-        </div>`;document.getElementById(i).innerHTML=t}}
+        </div>`;document.getElementById(e).innerHTML=t}}
