@@ -1,4 +1,5 @@
 import ExternalServices from './externalServices.js';
+import { setLocalStorage, alertMessage, removeAllAlerts } from './utils.js';
 
 // takes a form element and returns an object where the key is the "name" of the form input.
 function formDataToJSON(formElement) {
@@ -28,7 +29,11 @@ export default class checkoutDetails {
       .querySelector('#checkout_button')
       .addEventListener('click', (event) => {
         event.preventDefault();
-        this.checkout(document.querySelector('form'));
+        if (document.querySelector('form').checkValidity()) {
+          this.checkout(document.querySelector('form'));
+        } else {
+          document.querySelector('form').reportValidity();
+        }
       });
     this.ex = new ExternalServices();
   }
@@ -65,7 +70,7 @@ export default class checkoutDetails {
   }
 
   async checkout(form) {
-    console.log(form);
+    // console.log(form);
     const data = formDataToJSON(form);
     // we could fix this everywhere, but why?
     delete Object.assign(data, { cardNumber: data.card_number })['card_number'];
@@ -77,9 +82,22 @@ export default class checkoutDetails {
     data['shipping'] = this.calcShipping();
     data['tax'] = this.calcTax();
     data['orderDate'] = new Date();
-    console.log(data);
-    const answer = await this.ex.runPayment(data);
-    console.log(answer);
+    // console.log(data);
+    try {
+      const answer = await this.ex.runPayment(data);
+      // console.log('here');
+      // console.log(answer);
+      setLocalStorage('so-cart', []);
+      location.assign('/checkout/checkedout.html');
+    } catch (err) {
+      // console.log('ERROR');
+      // console.log(err);
+      removeAllAlerts();
+      for (const [key, value] of Object.entries(err.message)) {
+        alertMessage(value);
+      }
+    }
+
     // build the data object from the calculated fields, the items in the cart, and the information entered into the form
 
     // {

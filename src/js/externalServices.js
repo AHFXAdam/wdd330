@@ -1,13 +1,11 @@
 const baseURL = 'http://157.201.228.93:2992/';
 
-function convertToJson(res) {
+async function convertToJson(res) {
+  const data = await res.json();
+  console.log(res);
   if (res.ok) {
-    return res.json();
-  } else if (res.status == '400') {
-    return res.json();
-  } else {
-    throw new Error('Bad Response');
-  }
+    return data;
+  } else throw { name: 'servicesError', message: data };
 }
 
 export default class ExternalServices {
@@ -40,8 +38,8 @@ export default class ExternalServices {
     };
     return fetch(baseURL + 'checkout', options)
       .then(convertToJson)
-      .then((data) => data)
-      .catch((error) => error);
+      .then((data) => data);
+    // .catch((error) => error);
   }
 
   //   addToCart(e) {
