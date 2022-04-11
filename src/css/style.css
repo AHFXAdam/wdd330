@@ -220,6 +220,15 @@ a.remove:focus {
 .product-detail img {
   width: 100%;
 }
+.alert {
+  background-color: #f0a968;
+  border: solid 1px #f79b34;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 /* Start cart list card styles */
 .cart-card {
@@ -276,6 +285,7 @@ a.remove:focus {
     transform: rotate(0);
   }
 }
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

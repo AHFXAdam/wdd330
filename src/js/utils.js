@@ -83,3 +83,30 @@ export async function loadHeaderFooter() {
   renderWithTemplate(header, header_element, {});
   renderWithTemplate(footer, footer_element, {});
 }
+
+export function alertMessage(message, scroll = true) {
+  let div = document.createElement('div');
+  div.classList.add('alert');
+  const data = `${message}<span>X</span>`;
+  div.innerHTML = data;
+  const main = document.querySelector('main');
+
+  div.addEventListener('click', function (e) {
+    console.log(main);
+    console.log(e);
+    if (e.target.tagName == 'SPAN') {
+      main.removeChild(this);
+    }
+  });
+  main.prepend(div);
+  if (scroll) {
+    window.scroll(0, 0);
+  }
+}
+
+export function removeAllAlerts() {
+  const allAlerts = document.querySelectorAll('.alert');
+  allAlerts.forEach((alert) =>
+    document.querySelector('main').removeChild(alert)
+  );
+}
