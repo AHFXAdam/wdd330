@@ -26,6 +26,36 @@ export default class ExternalServices {
       .then((data) => data.Result);
   }
 
+  async getOrders(token) {
+    console.log('get Orders Fired');
+    console.log(token);
+    const options = {
+      method: 'GET',
+      headers: {
+        // 'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return fetch(baseURL + 'orders', options)
+      .then(convertToJson)
+      .then((data) => data);
+  }
+
+  async loginRequest(creds) {
+    console.log('login Request Fired');
+    console.log(creds);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(creds),
+    };
+    return fetch(baseURL + 'login', options)
+      .then(convertToJson)
+      .then((data) => data.accessToken);
+  }
+
   async runPayment(cart_info) {
     console.log(cart_info);
 
