@@ -1,4 +1,4 @@
-import { setLocalStorage } from './utils.js';
+import { updateBreadCrumbs, setLocalStorage } from './utils.js';
 // import { updateCartNumber } from './header.js';
 export default class productDetails {
   constructor(productId, dataSource, sc) {
@@ -11,6 +11,10 @@ export default class productDetails {
   async init() {
     this.details = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails('product-detail');
+    updateBreadCrumbs(
+      `<a href="/product-listing/?category=${this.details.Category}">${this.details.Category}</a> | ${this.details.NameWithoutBrand}`
+    );
+
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     // once we have the product details we can render out the HTML
     // once the HTML is rendered we can add a listener to Add to Cart button

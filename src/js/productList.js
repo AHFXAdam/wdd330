@@ -1,4 +1,9 @@
-import { renderList, getLocalStorage, setLocalStorage } from './utils';
+import {
+  updateBreadCrumbs,
+  renderList,
+  getLocalStorage,
+  setLocalStorage,
+} from './utils';
 
 export default class ProductList {
   constructor(dataSource, targetElement, category, search = '') {
@@ -43,10 +48,13 @@ export default class ProductList {
     let list = [];
     if (this.search == null) {
       list = await this.dataSource.getData(this.category);
+      updateBreadCrumbs(`${this.category}->(${list.length} items)`);
     } else {
       list = await this.getAllProducts();
       list = this.filterListBySearch(list);
+      updateBreadCrumbs(`${this.search}->(${list.length} items)`);
     }
+
     list = this.sortList(list);
     if (list.length == 0) {
       this.targetElement.innerHTML =

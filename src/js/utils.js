@@ -37,6 +37,11 @@ export function getParams(param) {
   return product;
 }
 
+export function updateBreadCrumbs(text) {
+  const breadcrumb = document.querySelector('.breadcrumbs');
+  breadcrumb.innerHTML = text;
+}
+
 export function renderList(template, parentElement, list, callback) {
   list.forEach((product) => {
     let clone = template.content.cloneNode(true);

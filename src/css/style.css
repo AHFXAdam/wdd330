@@ -242,9 +242,15 @@ a.remove:focus {
 .search button {
   font-size: 12px;
 }
+.breadcrumbs {
+  padding: 10px;
+  font-size: var(--small-font);
+  font-weight: bold;
+}
 /* Start cart list card styles */
 .cart-card {
   display: grid;
+  column-gap: 20px;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
   /* max-height: 120px; */
