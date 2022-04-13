@@ -8,12 +8,14 @@ export default class productDetails {
     this.sc = sc;
   }
 
-  async init() {
+  async init(parentElement = 'product-detail', breadCrumb = true) {
     this.details = await this.dataSource.findProductById(this.productId);
-    this.renderProductDetails('product-detail');
-    updateBreadCrumbs(
-      `<a href="/product-listing/?category=${this.details.Category}">${this.details.Category}</a> | ${this.details.NameWithoutBrand}`
-    );
+    this.renderProductDetails(parentElement);
+    if (breadCrumb) {
+      updateBreadCrumbs(
+        `<a href="/product-listing/?category=${this.details.Category}">${this.details.Category}</a> | ${this.details.NameWithoutBrand}`
+      );
+    }
 
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     // once we have the product details we can render out the HTML

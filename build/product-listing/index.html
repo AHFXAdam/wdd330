@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script type="module" src="../js/product-listing.js" defer=""></script>
     <script defer="" type="module" src="../js/header.js"></script>
+    <script src="../js/modal.js" type="module" defer=""></script>
 
     <!-- HTML template to build a product card2 -->
     <template id="product-card-template">
@@ -18,10 +19,24 @@
           </p>
           <p class="product-card__price">$</p>
         </a>
+        <button class="js-modal" data-id="" data-modal="">Quick View</button>
       </li>
     </template>
   </head>
   <body>
+    <div id="modal-1" class="modal">
+      <div class="modal-inner">
+        <a class="js-close-modal">×</a>
+        <div class="modal-content">
+          <h3>Modal Title</h3>
+
+          <div id="modal-info">This is my modal content</div>
+        </div>
+        <!-- .modal-content -->
+      </div>
+      <!-- .modal-inner -->
+    </div>
+    <!-- .modal -->
     <header class="divider" id="main-header"></header>
     <div class="breadcrumbs"></div>
 

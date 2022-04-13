@@ -1,1 +1,1 @@
-import t from"./externalServices.js";import r from"./productDetails.js";import o from"./shoppingCart.js";import{getParams as s}from"./utils.js";const e=new t("tents"),c=new o,i=s("product"),n=new r(i,e,c);n.init();
+import t from"./externalServices.js";import r from"./productDetails.js";import o from"./shoppingCart.js";import{getParams as s}from"./utils.js";const e=new t,c=new o,i=s("product"),p=new r(i,e,c);p.init();
