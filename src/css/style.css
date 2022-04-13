@@ -229,7 +229,19 @@ a.remove:focus {
   display: flex;
   justify-content: space-between;
 }
-
+.search {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 33px;
+  align-content: center;
+}
+.search input {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.search button {
+  font-size: 12px;
+}
 /* Start cart list card styles */
 .cart-card {
   display: grid;

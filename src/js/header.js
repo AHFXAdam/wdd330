@@ -15,8 +15,17 @@ export async function updateCartNumber() {
     }
   }
 }
+export function addSearch() {
+  const search_btn = document.querySelector('.search_btn');
+  search_btn.addEventListener('click', (e) => {
+    console.log('fired');
+    const search_term = document.querySelector('.search input').value;
+    document.location.assign(`/product-listing/?q=${search_term}`);
+  });
+}
 export async function runAll() {
   await loadHeaderFooter();
   updateCartNumber();
+  addSearch();
 }
 runAll();

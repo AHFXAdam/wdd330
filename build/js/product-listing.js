@@ -1,1 +1,1 @@
-import r from"./externalServices.js";import o from"./productList.js";import{getParams as e}from"./utils.js";const t=e("category"),c=new r(t),s=new o(c,document.querySelector(".product-list"),t);s.init();
+import e from"./externalServices.js";import c from"./productList.js";import{getParams as t}from"./utils.js";const o=t("category"),r=t("q"),s=new e(o),i=new c(s,document.querySelector(".product-list"),o,r);console.log(r),i.init();

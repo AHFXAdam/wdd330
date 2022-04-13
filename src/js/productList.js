@@ -1,10 +1,11 @@
 import { renderList, getLocalStorage, setLocalStorage } from './utils';
 
 export default class ProductList {
-  constructor(dataSource, targetElement, category) {
+  constructor(dataSource, targetElement, category, search = '') {
     this.dataSource = dataSource;
     this.targetElement = targetElement;
     this.category = category;
+    this.search = search;
   }
 
   async init() {
@@ -12,7 +13,12 @@ export default class ProductList {
     //list = this.filterList(list);
     // list = this.sortList(list);
     this.showList();
-    this.updateHeading(this.category);
+    if (this.search == null) {
+      this.updateHeading(this.category);
+    } else {
+      this.updateHeading(this.search);
+    }
+
     document
       .querySelector('#sort')
       .addEventListener('click', (err) => this.sortAndShow());
@@ -34,11 +40,32 @@ export default class ProductList {
   }
 
   async showList() {
-    let list = await this.dataSource.getData(this.category);
+    let list = [];
+    if (this.search == null) {
+      list = await this.dataSource.getData(this.category);
+    } else {
+      list = await this.getAllProducts();
+      list = this.filterListBySearch(list);
+    }
     list = this.sortList(list);
-    const template = document.getElementById('product-card-template');
-    this.targetElement.innerHTML = '';
-    renderList(template, this.targetElement, list, this.prepareTemplate);
+    if (list.length == 0) {
+      this.targetElement.innerHTML =
+        'Sorry, no products found matching your search.';
+    } else {
+      const template = document.getElementById('product-card-template');
+      this.targetElement.innerHTML = '';
+      renderList(template, this.targetElement, list, this.prepareTemplate);
+    }
+  }
+
+  async getAllProducts() {
+    let allProds = [];
+    const categories = ['tents', 'backpacks', 'sleeping-bags', 'hammocks'];
+    for (let category of categories) {
+      let list = await this.dataSource.getData(category);
+      allProds = [...allProds, ...list];
+    }
+    return allProds;
   }
 
   sortList(list) {
@@ -84,6 +111,13 @@ export default class ProductList {
   filterList(list) {
     const myArray = ['985RF', '880RR', '985PR', '344YJ'];
     const products = list.filter((item) => myArray.includes(item.Id));
+    return products;
+  }
+
+  filterListBySearch(list) {
+    const products = list.filter((item) =>
+      item.Name.toLowerCase().includes(this.search.toLowerCase())
+    );
     return products;
   }
 
