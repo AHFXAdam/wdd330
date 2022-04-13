@@ -1,3 +1,4 @@
+import Modal from './modal';
 import {
   updateBreadCrumbs,
   renderList,
@@ -64,6 +65,7 @@ export default class ProductList {
       this.targetElement.innerHTML = '';
       renderList(template, this.targetElement, list, this.prepareTemplate);
     }
+    new Modal();
   }
 
   async getAllProducts() {
@@ -138,6 +140,12 @@ export default class ProductList {
     clone.querySelector(
       '.product-card__price'
     ).innerHTML += product.ListPrice.toFixed(2);
+    clone
+      .querySelector('.product-card button')
+      .setAttribute('data-id', product.Id);
+    clone
+      .querySelector('.product-card button')
+      .setAttribute('data-modal', 'modal-1');
     clone.querySelector('.product-card__discount_price').innerHTML += (
       product.SuggestedRetailPrice - product.ListPrice
     ).toFixed(2);
