@@ -242,6 +242,19 @@ a.remove:focus {
 .search button {
   font-size: 12px;
 }
+.newsletter {
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr;
+  grid-template-rows: 33px;
+  align-content: center;
+  max-width: 500px;
+  column-gap: 20px;
+  align-items: center;
+  margin: 30px auto;
+}
+.newsletter label {
+  text-align: right;
+}
 .breadcrumbs {
   padding: 10px;
   font-size: var(--small-font);
@@ -524,10 +537,12 @@ a.remove:focus {
   margin-top: 20px;
 }
 .sort-bar button,
-.js-modal {
+.js-modal,
+.newsletter button {
   font-size: var(--small-font);
   display: inline-block;
 }
+
 footer {
   font-size: var(--small-font);
   padding: 1em;
