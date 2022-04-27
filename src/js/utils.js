@@ -97,8 +97,8 @@ export function alertMessage(message, scroll = true) {
   const main = document.querySelector('main');
 
   div.addEventListener('click', function (e) {
-    console.log(main);
-    console.log(e);
+    // console.log(main);
+    // console.log(e);
     if (e.target.tagName == 'SPAN') {
       main.removeChild(this);
     }
