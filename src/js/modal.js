@@ -5,12 +5,16 @@ import { getParams } from './utils.js';
 
 export default class Modal {
   /* From https://codepen.io/Alecaddd/pen/XgdKjB */
-  constructor() {
+  constructor(callback) {
     this.triggers = document.querySelectorAll('.js-modal');
     this.close = document.querySelectorAll('.js-close-modal');
     this.modals = document.querySelectorAll('.modal');
     this.modalInners = document.querySelectorAll('.modal-inner');
-
+    if (callback) {
+      this.callback = callback;
+    } else {
+      this.callback = Modal.customFunction;
+    }
     this.listeners();
   }
 
@@ -18,7 +22,7 @@ export default class Modal {
     window.addEventListener('keydown', this.keyDown);
 
     this.triggers.forEach((el) => {
-      el.addEventListener('click', this.openModal, false);
+      el.addEventListener('click', this.openModal.bind(this), false);
     });
 
     this.modals.forEach((el) => {
@@ -77,6 +81,10 @@ export default class Modal {
     }
   }
 
+  static async otherFunction() {
+    console.log('here');
+  }
+
   static async customFunction(productId) {
     // const productId = "15UGY";
     const dataSource = new ExternalServices();
@@ -95,8 +103,8 @@ export default class Modal {
   }
 
   openModal(el, customFunction) {
-    console.log(el);
-    Modal.customFunction(el.currentTarget.dataset.id);
+    console.log(el, this.callback);
+    this.callback(el.currentTarget.dataset.id);
     if (!el.currentTarget.dataset.modal) {
       console.error('No data-modal attribute defined!');
       return;

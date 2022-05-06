@@ -83,10 +83,15 @@ export function convertToText(res) {
 export async function loadHeaderFooter() {
   const header = await loadTemplate('../partials/header.html');
   const footer = await loadTemplate('../partials/footer.html');
+  const modal = await loadTemplate('../partials/modal.html');
   const header_element = document.querySelector('header');
   const footer_element = document.querySelector('footer');
+  const modal_element = document.querySelector('div.modal-holder');
   renderWithTemplate(header, header_element, {});
   renderWithTemplate(footer, footer_element, {});
+  if (modal_element) {
+    renderWithTemplate(modal, modal_element, {});
+  }
 }
 
 export function alertMessage(message, scroll = true) {

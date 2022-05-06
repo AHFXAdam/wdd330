@@ -255,6 +255,13 @@ a.remove:focus {
 .newsletter label {
   text-align: right;
 }
+.register {
+  display: grid;
+  text-align: left;
+}
+.register input {
+  margin-bottom: 15px;
+}
 .breadcrumbs {
   padding: 10px;
   font-size: var(--small-font);
