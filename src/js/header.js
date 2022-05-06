@@ -27,5 +27,6 @@ export async function runAll() {
   await loadHeaderFooter();
   updateCartNumber();
   addSearch();
+  // new Register();
 }
 runAll();
