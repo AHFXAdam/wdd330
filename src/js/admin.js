@@ -39,17 +39,21 @@ export default class Admin {
   }
   async showOrders() {
     const orders = await this.services.getOrders(this.token);
-
+    console.log(orders[0].items);
     const ordersTable = document.createElement('table');
     const main = document.querySelector('main');
     ordersTable.innerHTML = orders
-      .map(
-        (order) =>
-          `<tr><td>${order.id}</td><td>${new Date(
-            order.orderDate
-          ).toLocaleDateString('en-US')}</td><td>${
-            order.items.length
-          }</td><td>${order.orderTotal}</td></tr>`
+      .map((order) =>
+        order.id != undefined &&
+        order.orderDate != undefined &&
+        order.items != undefined &&
+        order.orderTotal != undefined
+          ? `<tr><td>${order.id}</td><td>${new Date(
+              order.orderDate
+            ).toLocaleDateString('en-US')}</td><td>${
+              order.items.length
+            }</td><td>${order.orderTotal}</td></tr>`
+          : ''
       )
       .join('');
     main.appendChild(ordersTable);
